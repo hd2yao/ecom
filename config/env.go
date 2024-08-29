@@ -14,6 +14,8 @@ type Config struct {
     DBName     string
 }
 
+var Envs = initConfig()
+
 func initConfig() Config {
 
     return Config{

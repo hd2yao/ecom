@@ -6,15 +6,16 @@ import (
     "github.com/go-sql-driver/mysql"
 
     "github.com/hd2yao/ecom/cmd/api"
+    "github.com/hd2yao/ecom/config"
     "github.com/hd2yao/ecom/db"
 )
 
 func main() {
     cfg := mysql.Config{
-        User:                 "root",
-        Passwd:               "root",
-        Addr:                 "127.0.0.1:3306",
-        DBName:               "ecom",
+        User:                 config.Envs.DBUser,
+        Passwd:               config.Envs.DBPassword,
+        Addr:                 config.Envs.DBAddress,
+        DBName:               config.Envs.DBName,
         Net:                  "tcp",
         AllowNativePasswords: true,
         ParseTime:            true,
@@ -24,7 +25,7 @@ func main() {
         log.Fatal(err)
     }
 
-    server := api.NewAPIServer(":8080", nil)
+    server := api.NewAPIServer(":8080", db)
     if err := server.Run(); err != nil {
         log.Fatal(err)
     }
