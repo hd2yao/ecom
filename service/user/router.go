@@ -2,11 +2,11 @@ package user
 
 import (
     "fmt"
-    "github.com/hd2yao/ecom/service/auth"
     "net/http"
 
     "github.com/gorilla/mux"
 
+    "github.com/hd2yao/ecom/service/auth"
     "github.com/hd2yao/ecom/types"
     "github.com/hd2yao/ecom/utils"
 )
