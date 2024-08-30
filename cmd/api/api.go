@@ -30,7 +30,8 @@ func (a *APIServer) Run() error {
     subRouter := router.PathPrefix("/api/v1").Subrouter()
 
     // 注册 user 功能的路由以及处理函数
-    userHandler := user.NewHandler()
+    userStore := user.NewStore(a.db)
+    userHandler := user.NewHandler(userStore)
     userHandler.RegisterRoutes(subRouter)
 
     log.Println("Listening on", a.addr)
