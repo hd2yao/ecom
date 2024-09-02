@@ -4,7 +4,11 @@ import (
     "encoding/json"
     "fmt"
     "net/http"
+
+    "github.com/go-playground/validator/v10"
 )
+
+var Validate = validator.New()
 
 // WriteJSON 响应编码返回
 func WriteJSON(w http.ResponseWriter, status int, v any) error {
