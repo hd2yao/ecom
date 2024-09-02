@@ -38,8 +38,8 @@ func main() {
 
     // 创建迁移实例
     m, err := migrate.NewWithDatabaseInstance(
-        "file://cmd/migration/migrations", // 指向迁移文件夹的 URL
-        "mysql",                           // 数据库类型
+        "file://cmd/migrate/migrations", // 指向迁移文件夹的 URL
+        "mysql",                         // 数据库类型
         driver,
     )
     if err != nil {
