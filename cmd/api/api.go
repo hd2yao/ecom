@@ -1,13 +1,14 @@
 package api
 
 import (
-    "database/sql"
-    "log"
-    "net/http"
+	"database/sql"
+	"log"
+	"net/http"
 
-    "github.com/gorilla/mux"
+	"github.com/gorilla/mux"
 
-    "github.com/hd2yao/ecom/service/user"
+	"github.com/hd2yao/ecom/service/product"
+	"github.com/hd2yao/ecom/service/user"
 )
 
 type APIServer struct {
@@ -33,6 +34,11 @@ func (a *APIServer) Run() error {
     userStore := user.NewStore(a.db)
     userHandler := user.NewHandler(userStore)
     userHandler.RegisterRoutes(subRouter)
+
+    // 注册 product 功能的路由以及处理函数
+    productStore := product.NewStore(a.db)
+    productHandler := product.NewHandler(productStore)
+    productHandler.RegisterRoutes(subRouter)
 
     log.Println("Listening on", a.addr)
     // 监听服务器 并为路由提供解决方法
