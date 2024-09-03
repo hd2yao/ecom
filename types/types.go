@@ -9,7 +9,7 @@ type UserStore interface {
 }
 
 type ProductStore interface {
-    GetProducts() ([]*Product, error)
+    GetProducts() ([]Product, error)
 }
 
 type User struct {
