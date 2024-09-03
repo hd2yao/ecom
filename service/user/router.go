@@ -1,16 +1,16 @@
 package user
 
 import (
-	"fmt"
-	"net/http"
+    "fmt"
+    "net/http"
 
-	"github.com/go-playground/validator/v10"
-	"github.com/gorilla/mux"
+    "github.com/go-playground/validator/v10"
+    "github.com/gorilla/mux"
 
-	"github.com/hd2yao/ecom/config"
-	"github.com/hd2yao/ecom/service/auth"
-	"github.com/hd2yao/ecom/types"
-	"github.com/hd2yao/ecom/utils"
+    "github.com/hd2yao/ecom/config"
+    "github.com/hd2yao/ecom/service/auth"
+    "github.com/hd2yao/ecom/types"
+    "github.com/hd2yao/ecom/utils"
 )
 
 type Handler struct {
@@ -31,6 +31,7 @@ func (h *Handler) handleLogin(w http.ResponseWriter, r *http.Request) {
     var payload types.LoginUserPayload
     if err := utils.ParseJSON(r, &payload); err != nil {
         utils.WriteError(w, http.StatusBadRequest, err)
+        return
     }
 
     // validate the payload
