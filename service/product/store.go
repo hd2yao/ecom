@@ -1,50 +1,51 @@
 package product
 
 import (
-	"database/sql"
-	"github.com/hd2yao/ecom/types"
+    "database/sql"
+
+    "github.com/hd2yao/ecom/types"
 )
 
 type Store struct {
-	db *sql.DB
+    db *sql.DB
 }
 
 func NewStore(db *sql.DB) *Store {
-	return &Store{db: db}
+    return &Store{db: db}
 }
 
 func (s *Store) GetProducts() ([]types.Product, error) {
-	rows, err := s.db.Query("SELECT * FROM products")
-	if err != nil {
-		return nil, err
-	}
+    rows, err := s.db.Query("SELECT * FROM products")
+    if err != nil {
+        return nil, err
+    }
 
-	products := make([]types.Product, 0)
-	for rows.Next() {
-		p, err := scanRowsIntoProduct(rows)
-		if err != nil {
-			return nil, err
-		}
-		products = append(products, *p)
-	}
-	return products, nil
+    products := make([]types.Product, 0)
+    for rows.Next() {
+        p, err := scanRowsIntoProduct(rows)
+        if err != nil {
+            return nil, err
+        }
+        products = append(products, *p)
+    }
+    return products, nil
 }
 
 func scanRowsIntoProduct(rows *sql.Rows) (*types.Product, error) {
-	product := new(types.Product)
+    product := new(types.Product)
 
-	err := rows.Scan(
-		&product.ID,
-		&product.Name,
-		&product.Description,
-		&product.Image,
-		&product.Price,
-		&product.Quantity,
-		&product.CreatedAt,
-	)
-	if err != nil {
-		return nil, err
-	}
+    err := rows.Scan(
+        &product.ID,
+        &product.Name,
+        &product.Description,
+        &product.Image,
+        &product.Price,
+        &product.Quantity,
+        &product.CreatedAt,
+    )
+    if err != nil {
+        return nil, err
+    }
 
-	return product, nil
+    return product, nil
 }
