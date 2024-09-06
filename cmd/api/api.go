@@ -2,13 +2,13 @@ package api
 
 import (
     "database/sql"
-    "github.com/hd2yao/ecom/service/cart"
-    "github.com/hd2yao/ecom/service/order"
     "log"
     "net/http"
 
     "github.com/gorilla/mux"
 
+    "github.com/hd2yao/ecom/service/cart"
+    "github.com/hd2yao/ecom/service/order"
     "github.com/hd2yao/ecom/service/product"
     "github.com/hd2yao/ecom/service/user"
 )
